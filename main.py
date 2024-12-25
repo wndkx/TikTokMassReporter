@@ -30,8 +30,6 @@ def create_proxies():
 async def mass_report(reporturl, amount, isproxies):
     if isproxies in ['y','yes','1']:
         create_proxies()
-    
-    # Read proxies once outside the loop
     proxies = []
     if isproxies in ['y','yes','1']:
         with open('proxies.txt', 'r') as f:
@@ -46,7 +44,6 @@ async def mass_report(reporturl, amount, isproxies):
         }
         try:
             async with aiohttp.ClientSession() as session:
-                # If we have proxies, use them
                 if proxies:
                     proxy = f"http://{random.choice(proxies)}"
                     async with session.get(reporturl, proxy=proxy, headers=headers) as response:
@@ -84,7 +81,7 @@ async def mainUI():
    ::     ::   ::  :::     ::    ::::: ::   ::  :::  :::     ::   ::   :::  :::: ::   :::: ::   ::   :::   :: ::::   ::       ::::: ::  ::   :::     ::     :: ::::  ::   :::  
    :     :     :   :::     :      : :  :    :   :::   :      :     :   : :  :: : :    :: : :     :   : :  : :: ::    :         : :  :    :   : :     :     : :: ::    :   : :  
                                                                                                                                                                                                                                                                                             
-                                                by wndkx; https://t.me/wndkx ; https://github.com/wndkx/TikTokMassReport \n
+                                                by wndkx; https://t.me/wndkx ; https://github.com/wndkx/TikTokMassReporter \n
 """, Colors.blue_to_red, interval=0.0001)
         amount = Write.Input("Amount of requests: ", Colors.blue_to_red, interval=0.0001)
         proxies = Write.Input("Use proxies?(y or n): ", Colors.blue_to_red, interval=0.0001)
