@@ -36,11 +36,11 @@ async def mass_report(reporturl, amount, isproxies):
             proxies = f.read().splitlines()
 
     for i in range(1,int(amount)+1):
-        useragent = fake_useragent.UserAgent
+        useragent = fake_useragent.UserAgent().random
         match_nickname = re.search(r'nickname=([^&]+)', reporturl)
         match_user_id = re.search(r'owner_id=([^&]+)', reporturl)
         headers = {
-            "User-Agent": useragent.random
+            "User-Agent": useragent
         }
         try:
             async with aiohttp.ClientSession() as session:
